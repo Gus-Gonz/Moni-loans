@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_loans
+    restart: always
+    environment:
+      POSTGRES_DB: loans_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend-moni
+    restart: always
+    depends_on:
+      - db
+    environment:
+      DB_NAME: loans_db
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      LOAN_VALIDATION_API_KEY: YOUR_KEY_HERE
+      LOAN_VALIDATION_API_URL: https://YOUR_URL_HERE
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend-moni:/app
+    command: >
+      sh -c "python manage.py migrate &&
+        python manage.py runserver 0.0.0.0:8000"
+
+
+volumes:
+  postgres_data:
