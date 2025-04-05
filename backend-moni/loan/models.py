@@ -15,7 +15,7 @@ class LoanRequest(models.Model):
         FEMALE = 'F', 'Female'
         OTHER = 'O', 'Other'
 
-    id_number = models.CharField(max_length=16, unique=True)
+    id_number = models.CharField(max_length=16)
     full_name = models.CharField(max_length=255)
     gender = models.CharField(max_length=10, choices=GenderChoices.choices)
     email = models.EmailField()

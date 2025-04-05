@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='LoanRequest',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('id_number', models.CharField(max_length=16, unique=True)),
+                ('id_number', models.CharField(max_length=16)),
                 ('full_name', models.CharField(max_length=255)),
                 ('gender', models.CharField(choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')], max_length=10)),
                 ('email', models.EmailField(max_length=254)),
