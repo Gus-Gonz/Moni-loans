@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 
+from django_filters.rest_framework import DjangoFilterBackend
 from django.core.exceptions import PermissionDenied
 from main.permissions import IsAnalystOrAdmin
 
@@ -42,10 +43,12 @@ class LoanRequestAPIView(APIView):
 class AdminLoanRequestAPIView(viewsets.ModelViewSet):
     """Admin API for managing loan requests"""
 
-    queryset = LoanRequest.objects.all()
+    queryset = LoanRequest.objects.all().order_by("-id")
     serializer_class = LoanRequestSerializer
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated, IsAnalystOrAdmin]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ["status"]
 
     def create(self, *args, **kwargs):
         return Response(

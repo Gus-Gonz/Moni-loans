@@ -41,23 +41,23 @@ def create_default_users():
     admin_group = Group.objects.filter(name="Admin").first()
     analyst_group = Group.objects.filter(name="Analyst").first()
 
-    if admin_group and not User.objects.filter(username="admin").exists():
-        admin_user = User.objects.create_superuser(
-            username="admin",
+    if admin_group and not User.objects.filter(username="Admin").exists():
+        admin_user = User.objects.create_user(
+            username="Admin",
             email="admin@example.com",
             password="Admin1234"
         )
         admin_user.groups.add(admin_group)
-        logger.info("✅ Admin user created: admin / Admin1234")
+        logger.info("✅ Admin user created: Admin / Admin1234")
 
-    if analyst_group and not User.objects.filter(username="analyst").exists():
-        analyst_user = User.objects.create_superuser(
-            username="analyst",
+    if analyst_group and not User.objects.filter(username="Analyst").exists():
+        analyst_user = User.objects.create_user(
+            username="Analyst",
             email="analyst@example.com",
             password="Analyst1234"
         )
         analyst_user.groups.add(analyst_group)
-        logger.info("✅ Analyst user created: analyst / Analyst1234")
+        logger.info("✅ Analyst user created: Analyst / Analyst1234")
 
 
 @receiver(post_migrate)

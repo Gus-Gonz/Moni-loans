@@ -4,6 +4,8 @@ import { CheckCircle, XCircle } from "lucide-react";
 
 import { TextInput, EmailInput, NumberInput } from "../../components/Inputs";
 import { RadioInputs } from "../../components/RadioInputs";
+import { Button } from "../../components/Button";
+
 import Api from "../../utils/Api";
 
 const initial_error_data = {
@@ -186,12 +188,9 @@ const LoanRequestPage = () => {
                 errorMessage={errors.gender[0]}
               />
 
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition"
-              >
+              <Button className="w-full" type="submit" variant={"black"}>
                 Request Loan
-              </button>
+              </Button>
             </form>
           </>
         ) : (
@@ -209,12 +208,14 @@ const LoanRequestPage = () => {
                 : "Sorry, your loan was rejected"}
             </h2>
             <div>
-              <button
+              <Button
+                className="w-full"
+                type="submit"
+                variant="black"
                 onClick={() => setLoanStatus(null)}
-                className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition"
               >
                 Back to Form
-              </button>
+              </Button>
             </div>
           </div>
         )}
