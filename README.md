@@ -14,7 +14,7 @@ This is a full-stack loan request system consisting of:
 1. **Clone the repository**
 
 ```bash
-git clone {}
+git clone {URL}
 cd moni-loans
 ```
 2. **Environment Variables**
@@ -28,6 +28,8 @@ DB_USER=postgres
 DB_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
+
+ENVIRONMENT: local
 
 LOAN_VALIDATION_API_KEY=YOUR_KEY_HERE
 LOAN_VALIDATION_API_URL=https://YOUR_URL_HERE
