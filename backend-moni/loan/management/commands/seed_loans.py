@@ -24,6 +24,7 @@ class Command(BaseCommand):
         for _ in range(5):
             LoanRequest.objects.create(
                 full_name=fake.name(),
+                id_number=fake.identity_card_number[:16],
                 amount=random.randint(1000, 10000),
                 status=random.choice(["REJ", "APR"]),
                 created_at=timezone.now(),
