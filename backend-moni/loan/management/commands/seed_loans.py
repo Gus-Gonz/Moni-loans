@@ -27,6 +27,8 @@ class Command(BaseCommand):
                 amount=random.randint(1000, 10000),
                 status=random.choice(["REJ", "APR"]),
                 created_at=timezone.now(),
+                email=fake.email(),
+                gender=random.choice(["F", "M", "O"])
             )
 
         self.stdout.write(self.style.SUCCESS(
