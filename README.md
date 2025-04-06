@@ -51,12 +51,15 @@ Backend API: http://localhost:8000/api
 4. **Test users**
 
 **Admin:**
+```
 Username: Admin
 Password: Admin1234
-
+```
 **Analyst:**
+```
 Username: Analyst
 Password: Analyst1234
+```
 
 Loan management for authenticated users with roles:
   - 👩‍💼 **Analyst**: Can list and view loan requests
