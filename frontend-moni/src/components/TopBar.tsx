@@ -25,14 +25,26 @@ const TopBar = () => {
               <span className="text-sm hidden sm:inline">
                 Welcome, <strong>{user.username}</strong>!
               </span>
-              <Button variant="white" onClick={() => navigate("/")}>Loan Form</Button>
-              <Button variant="white" onClick={() => navigate("/admin/dashboard")}>Dashboard</Button>
+              <Button variant="white" onClick={() => navigate("/")}>
+                Loan Form
+              </Button>
+              <Button
+                variant="white"
+                onClick={() => navigate("/admin/dashboard")}
+              >
+                Dashboard
+              </Button>
               <Button onClick={handleLogout}>Logout</Button>
             </>
           ) : (
-            <Button onClick={() => navigate("/admin/login")}>
-              Admin Login
-            </Button>
+            <>
+              <Button variant="white" onClick={() => navigate("/")}>
+                Loan Form
+              </Button>
+              <Button onClick={() => navigate("/admin/login")}>
+                Admin Login
+              </Button>
+            </>
           )}
         </div>
       </div>

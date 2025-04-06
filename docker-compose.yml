@@ -18,6 +18,7 @@ services:
     depends_on:
       - db
     environment:
+      ENVIRONMENT: local
       DB_NAME: loans_db
       DB_USER: postgres
       DB_PASSWORD: postgres
@@ -31,6 +32,7 @@ services:
       - ./backend-moni:/app
     command: >
       sh -c "python manage.py migrate &&
+        python manage.py seed_loans &&
         python manage.py runserver 0.0.0.0:8000"
 
   frontend:
