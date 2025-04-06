@@ -64,15 +64,6 @@ const DashboardPage = () => {
   const hasEditPermission = user?.permissions.includes("auth.update_loan");
 
   useEffect(() => {
-    if (!hasPermission) {
-      Auth.clearTokens();
-      setUser(null);
-      toast.success("Logged out successfully!");
-      navigate("/");
-    }
-  }, [hasPermission, setUser]);
-
-  useEffect(() => {
     if (!hasPermission) return;
     fetchLoans();
     setLoading(true);
@@ -246,7 +237,7 @@ const DashboardPage = () => {
         Here you will find an overview of loan requests.
       </p>
 
-      {loading && <p className="text-gray-500">Loading...</p>}
+      {loading && <p className="text-gray-500 text-white">Loading...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
       {isEditing && currentLoan && (

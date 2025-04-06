@@ -1,7 +1,10 @@
 import React from "react";
 import { Check, X, Edit, Trash } from "lucide-react";
 
+import { truncateText } from "../utils/TextUtils";
 import { Button } from "./Button";
+import { Tooltip } from "./Tooltip";
+
 interface LoanRequest {
   id: number;
   full_name: string;
@@ -53,7 +56,7 @@ export const LoanTable: React.FC<LoanTableProps> = ({
               className="border-t border-gray-200 hover:bg-gray-50"
             >
               <td className="px-4 py-3">{loan.id}</td>
-              <td className="px-4 py-3">{loan.full_name}</td>
+              <td className="px-4 py-3">{truncateText(loan.full_name, 40)}</td>
               <td className="px-4 py-3">${loan.amount}</td>
               <td className="px-4 py-3">{loan.status}</td>
               <td className="px-4 py-3">
@@ -61,7 +64,7 @@ export const LoanTable: React.FC<LoanTableProps> = ({
               </td>
               {hasEditPerms && (
                 <td className="px-4 py-3 flex gap-2">
-                  <div className="relative group">
+                  <Tooltip text="Edit">
                     <button
                       onClick={() => onEdit(loan.id)}
                       className="text-blue-600 hover:text-blue-800"
@@ -69,29 +72,9 @@ export const LoanTable: React.FC<LoanTableProps> = ({
                     >
                       <Edit className="w-5 h-5" />
                     </button>
-                    <span
-                      className={`
-                        absolute
-                        bottom-full
-                        left-1/2
-                        transform
-                        -translate-x-1/2
-                        -translate-y-1
-                        text-xs
-                        text-white
-                        bg-black
-                        p-1
-                        rounded
-                        opacity-0
-                        group-hover:opacity-100
-                        transition-opacity
-                        `}
-                    >
-                      Edit
-                    </span>
-                  </div>
+                  </Tooltip>
                   {loan.status !== "APR" && (
-                    <div className="relative group">
+                    <Tooltip text="Approve">
                       <button
                         onClick={() => onApprove(loan.id)}
                         className={`text-green-600 cursor-pointer`}
@@ -99,89 +82,28 @@ export const LoanTable: React.FC<LoanTableProps> = ({
                       >
                         <Check className="w-5 h-5" />
                       </button>
-                      <span
-                        className={`
-                            absolute
-                            bottom-full
-                            left-1/2
-                            transform
-                            -translate-x-1/2
-                            -translate-y-1
-                            text-xs
-                            text-white
-                            bg-black
-                            p-1
-                            rounded
-                            opacity-0
-                            group-hover:opacity-100
-                            transition-opacity
-                            `}
-                      >
-                        Approve
-                      </span>
-                    </div>
+                    </Tooltip>
                   )}
                   {loan.status !== "REJ" && (
-                    <div className="relative group">
+                    <Tooltip text="Reject">
                       <button
                         onClick={() => onReject(loan.id)}
-                        disabled={loan.status === "REJ"}
                         className="text-red-600 cursor-pointer"
                         title="Reject"
                       >
                         <X className="w-5 h-5" />
                       </button>
-                      <span
-                        className={`
-                            absolute
-                            bottom-full
-                            left-1/2
-                            transform
-                            -translate-x-1/2
-                            -translate-y-1
-                            text-xs
-                            text-white
-                            bg-black
-                            p-1
-                            rounded
-                            opacity-0
-                            group-hover:opacity-100
-                            transition-opacity
-                            `}
-                      >
-                        Reject
-                      </span>
-                    </div>
+                    </Tooltip>
                   )}
-                  <div className="relative group">
+                  <Tooltip text="Delete">
                     <button
                       onClick={() => onDelete(loan.id)}
-                      className="text-red-600 hover:text-red-800"
+                      className="text-red-600 cursor-pointer"
                       title="Delete"
                     >
                       <Trash className="w-5 h-5" />
                     </button>
-                    <span
-                      className={`
-                        absolute
-                        bottom-full
-                        left-1/2
-                        transform
-                        -translate-x-1/2
-                        -translate-y-1
-                        text-xs
-                        text-white
-                        bg-black
-                        p-1
-                        rounded
-                        opacity-0
-                        group-hover:opacity-100
-                        transition-opacity
-                        `}
-                    >
-                      Delete
-                    </span>
-                  </div>
+                  </Tooltip>
                 </td>
               )}
             </tr>

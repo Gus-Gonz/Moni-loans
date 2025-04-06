@@ -45,7 +45,7 @@ class AdminLoanRequestAPITest(TestCase):
         response = self.client.get(self.list_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data.get("count"), 1)
 
     def test_admin_can_list_loans(self):
         self.client.credentials(
@@ -54,7 +54,7 @@ class AdminLoanRequestAPITest(TestCase):
         response = self.client.get(self.list_url)
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(response.data.get("count"), 1)
 
     def test_admin_can_update_loan(self):
         self.client.credentials(
